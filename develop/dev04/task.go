@@ -24,11 +24,6 @@ import (
 Программа должна проходить все тесты. Код должен проходить проверки go vet и golint.
 */
 
-// func FoundAnnograms(input []string) map[string][]string {
-// 	annograms := make(map[string][]string)
-
-// }
-
 func Process(words []string) map[string][]string {
 	result := make(map[string][]string)
 
