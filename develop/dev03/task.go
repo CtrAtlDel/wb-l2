@@ -1,5 +1,12 @@
 package main
 
+import (
+	"bufio"
+	"flag"
+	"log"
+	"os"
+)
+
 /*
 === Утилита sort ===
 
@@ -25,6 +32,41 @@ package main
 Программа должна проходить все тесты. Код должен проходить проверки go vet и golint.
 */
 
-func main() {
+var (
+	row          int  // -k — указание колонки для сортировки
+	number       int  // -n — сортировать по числовому значению
+	reversNumber int  // -r — сортировать в обратном порядке
+	isRepetive   bool // -u — не выводить повторяющиеся строки
+)
 
+func init() {
+	flag.IntVar(&row, "-k", 0, "specifying the column to sort")
+	flag.IntVar(&number, "-n", 0, "sort by numeric value")
+	flag.IntVar(&reversNumber, "-r", 0, "sort in reverse order")
+	flag.BoolVar(&isRepetive, "-u", false, "do not output duplicate lines")
+}
+
+func ReadFile(path string) {
+	file, err := os.Open(path)
+	if err != nil {
+		log.Fatal("Cannot open file...")
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	var lines []string // collect all lines
+	for scanner.Scan() { 
+		lines = append(lines, scanner.Text())
+	}
+
+	
+
+
+}
+
+func main() {
+	flag.Parse()
+	var path = "/Users/ivankvasov/wb/l2/develop/dev03/data/file.txt"
+	ReadFile(path)
 }
