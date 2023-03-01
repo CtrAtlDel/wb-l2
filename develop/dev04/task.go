@@ -45,7 +45,7 @@ func Process(words []string) map[string][]string {
 	return ChangeMapKeyToValue(result)
 }
 
-func ChangeMapKeyToValue(m map[string][]string) map[string][]string {
+func ChangeMapKeyToValue(m map[string][]string) map[string][]string { // меняем местами ключ и значение, чтобы ключ был [0]
 	res := make(map[string][]string)
 	for _, v := range m {
 		strings := v

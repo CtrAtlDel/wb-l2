@@ -33,6 +33,26 @@ start := time.Now()
 fmt.Printf(“fone after %v”, time.Since(start))
 */
 
+func or(channels ...<-chan interface{}) <-chan interface{} {
+	if len(channels) == 0 { // Если на входе каналов нет, вернем закрытый канал
+		c := make(chan interface{})
+		close(c)
+		return c
+	}
+
+	c := make(chan interface{}) // Cоздадим канал для получения значений из входных каналов
+
+	for _, ch := range channels { // Запустим подпрограмму для каждого входного канала для пересылки значений в выходной канал (output)
+		go func(ch <-chan interface{}) {
+			for v := range ch {
+				c <- v
+			}
+		}(ch)
+	}
+
+	return c
+}
+
 func main() {
 
 }

@@ -25,7 +25,7 @@ import (
 Функция должна проходить все тесты. Код должен проходить проверки go vet и golint.
 */
 
-func main() {
+func main() { // Доп часть не успел :(
 	exmpl := "4d5"
 	res, _ := UnBoxing(exmpl)
 	fmt.Println(res == "aaaabccddddde")
@@ -37,7 +37,7 @@ func UnBoxing(s string) (string, error) {
 	if s == "" {
 		return s, errors.New("empty string")
 	}
-	_, err := strconv.Atoi(s)
+	_, err := strconv.Atoi(s) // Преобразовавыем строку в число
 	if err == nil {
 		return "", err
 	}
@@ -45,7 +45,7 @@ func UnBoxing(s string) (string, error) {
 	for i := 0; i < len(s)-1; i++ {
 		number, _ := strconv.Atoi(string(s[i+1]))
 
-		if unicode.IsDigit(rune(s[i])) {
+		if unicode.IsDigit(rune(s[i])) { // Проверяем число ли это
 			continue
 		}
 

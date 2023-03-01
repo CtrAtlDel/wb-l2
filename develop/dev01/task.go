@@ -25,7 +25,7 @@ func main() {
 }
 
 func GetTime() time.Time {
-	time, err := ntp.Time("0.beevik-ntp.pool.ntp.org")
+	time, err := ntp.Time("0.beevik-ntp.pool.ntp.org") // С помощью ntp получаем конкретное время
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: some problems with server 0.beevik-ntp.pool.ntp.org %v \n", err)
 		os.Exit(1)

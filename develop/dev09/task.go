@@ -38,8 +38,7 @@ func DownloadUrl(urlStr string) error {
 	}
 	defer resp.Body.Close()
 
-	// create a directory for file
-	dir, err := createDir(u.Host)
+	dir, err := createDir(u.Host) // создаем директорию для проекта
 	if err != nil {
 		return fmt.Errorf("cannot create a directory: %s", err)
 	}
@@ -60,29 +59,10 @@ func DownloadUrl(urlStr string) error {
 		return fmt.Errorf("error copying file: %v", err)
 	}
 
-	//if strings.HasPrefix(resp.Header.Get("Content-Type"), "text/html") {
-	//	links, err := extractLinks(resp.Body, u)
-	//	if err != nil {
-	//		return fmt.Errorf("error extracting links: %v", err)
-	//	}
-	//	for _, link := range links {
-	//		if link.Host == "" {
-	//			link.Host = u.Host
-	//		}
-	//		if link.Scheme == "" {
-	//			link.Scheme = u.Scheme
-	//		}
-	//		err := downloadURL(link.String())
-	//		if err != nil {
-	//			fmt.Fprintf(os.Stderr, "error downloading %s: %v\n", link, err)
-	//		}
-	//	}
-	//}
-
 	return nil
 }
 
-func createDir(host string) (string, error) { // Создаем директорию для файлов
+func createDir(host string) (string, error) { // создаем директорию для файлов
 	dir := filepath.Join(".", host)
 	err := os.MkdirAll(dir, os.ModePerm)
 	if err != nil {
@@ -93,6 +73,7 @@ func createDir(host string) (string, error) { // Создаем директор
 }
 
 func main() {
+	// ссылка для примера
 	err := DownloadUrl("https://stackoverflow.com/questions/23190311/reverse-a-map-in-value-key-format-in-golang")
 	if err != nil {
 		log.Fatal(err)
